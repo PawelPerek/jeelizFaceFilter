@@ -117,11 +117,14 @@ JEEFACEFILTERAPI.Canvas2DDisplay=function(spec){
             GL.disable(GL.BLEND);            
         }, //end draw()
         getCoordinates: function(detectedState){
-            COORDINATES.x=Math.round((0.5+0.5*detectedState.x-0.5*detectedState.s)*CV.width);
-            COORDINATES.y=Math.round((0.5+0.5*detectedState.y-0.5*detectedState.s)*CV.height);
-            COORDINATES.w=Math.round(detectedState.s*CV.width);
-            COORDINATES.h=COORDINATES.w;
-            return COORDINATES;   
+            const {x: dx, y: dy, s} = detectedState;
+            const {height, width} = CV;
+            
+            const w =  Math.round(s * width)
+            const h = w;
+            const x = Math.round((width * (dx + 1) - w) / 2);
+            const y = Math.round((height * (dy + 1) - h) / 2);
+            return {x, y, w, h};
         },
         resize: function(){
             CANVAS2D.width=CV.width;

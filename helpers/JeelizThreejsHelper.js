@@ -424,3 +424,5 @@ THREE.JeelizHelper = (function(){
   }
   return that;
 })();
+
+export default JeelizHelper;

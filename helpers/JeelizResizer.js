@@ -287,3 +287,5 @@ var JeelizResizer = (function(){
   }; //end that
   return that;
 })();
+
+export default JeelizResizer;
